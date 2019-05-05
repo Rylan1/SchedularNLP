@@ -32,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         getCurrentTopic();
+        Button calButton=findViewById(R.id.button7);
+        calButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCal();
+            }
+        });
+    }
+
+    private void openCal() {
+        Intent intent=new Intent(this,DisplaySch.class);
+        startActivity(intent);
     }
 
     private void getCurrentTopic() {
