@@ -46,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
                     TextView topicView=findViewById(R.id.textView2);
                     TextView startTime=findViewById(R.id.textView11);
                     TextView endtime=findViewById(R.id.textView13);
-                    topicView.setText(result.getTopic());
+                    TextView notes=findViewById(R.id.textView3);
+                    topicView.setText(result.getTopic()+" ||Title: "+result.getTitle());
                     startTime.setText("Start Time:"+f.format(result.getStart()));
                     endtime.setText(" End Time:"+f.format(result.getEnd()));
+                    notes.setText(result.getNotes());
                 }
             }
             catch (NullPointerException e){
