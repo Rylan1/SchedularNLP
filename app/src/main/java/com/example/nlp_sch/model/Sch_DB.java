@@ -14,8 +14,6 @@ public class Sch_DB extends RealmObject {
     @Required
     private Date end;
 
-    public Sch_DB() {
-    }
 
     public void setTopic(String topic) {
         this.topic = topic;

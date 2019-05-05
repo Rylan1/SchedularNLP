@@ -25,7 +25,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class Scheduling extends AppCompatActivity {
-    private EditText topic,title;
+    private EditText topic,title,notes;
     private TextView date,stime,etime,diaply;
     Realm realm;
     private String startD,endD,startT,endT,fullSD,fullED;
@@ -42,6 +42,7 @@ public class Scheduling extends AppCompatActivity {
         stime=findViewById(R.id.StartTime);
         etime=findViewById(R.id.endTime);
         diaply=findViewById(R.id.textView10);
+        notes=findViewById(R.id.editText3);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +83,8 @@ public class Scheduling extends AppCompatActivity {
         dateSetListener= new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                startD="0"+day+"/0"+month+"/"+year;
-                endD="0"+day+"/0"+month+"/"+year;
+                startD=""+day+"/"+(month+1)+"/"+year;
+                endD="0"+day+"/0"+(month+1)+"/"+year;
                 date.setText(startD);
             }
         };
@@ -127,14 +128,15 @@ public class Scheduling extends AppCompatActivity {
                                               Sch_DB sch_db = realm.createObject(Sch_DB.class);
                                               sch_db.setTopic(topic.getText().toString().trim());
                                               sch_db.setTitle(title.getText().toString().trim());
+                                              sch_db.setNotes(notes.getText().toString().trim());
                                               SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-                                              //ParsePosition parsePosition = new ParsePosition(0);
-                                              try{sch_db.setStart(dateFormat.parse(fullSD));}
-                                              catch (ParseException e){e.printStackTrace();}
+                                              ParsePosition parsePosition = new ParsePosition(0);
+                                              sch_db.setStart(dateFormat.parse(fullSD,parsePosition));
+                                              //catch (ParseException e){e.printStackTrace();}
 
-                                              //ParsePosition parsePosition1=new ParsePosition(1);
-                                              try{sch_db.setEnd(dateFormat.parse(fullED));}
-                                              catch (ParseException e){e.printStackTrace();}
+                                              ParsePosition parsePosition1=new ParsePosition(1);
+                                              sch_db.setEnd(dateFormat.parse(fullED,parsePosition1));
+                                              //catch (ParseException e){e.printStackTrace();}
 
                                           }
                                       }, new Realm.Transaction.OnSuccess() {
@@ -164,6 +166,9 @@ public class Scheduling extends AppCompatActivity {
         }
         diaply.setText(stuff);
     }
-
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 
 }
