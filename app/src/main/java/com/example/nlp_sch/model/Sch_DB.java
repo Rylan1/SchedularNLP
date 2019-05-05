@@ -3,10 +3,16 @@ package com.example.nlp_sch.model;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Required;
 
 public class Sch_DB extends RealmObject {
-    private String topic,title,notes;
-    private Date start,end;
+    @Required
+    private String topic;
+    private String title,notes;
+    @Required
+    private Date start;
+    @Required
+    private Date end;
 
     public Sch_DB() {
     }
