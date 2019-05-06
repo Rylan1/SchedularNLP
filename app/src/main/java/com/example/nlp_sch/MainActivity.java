@@ -55,11 +55,13 @@ public class MainActivity extends AppCompatActivity {
         for (Sch_DB result:sch_dbs){
             try {
                 if(date.before(result.getEnd())&&date.after(result.getStart())){
-                    TextView topicView=findViewById(R.id.textView2);
+                    TextView titleView=findViewById(R.id.textView2);
+                    TextView topicView=findViewById(R.id.textView20);
                     TextView startTime=findViewById(R.id.textView11);
                     TextView endtime=findViewById(R.id.textView13);
                     TextView notes=findViewById(R.id.textView3);
-                    topicView.setText(result.getTopic()+" ||Title: "+result.getTitle());
+                    topicView.setText("Current Topic:"+result.getTopic());
+                    titleView.setText("   Title: "+result.getTitle());
                     startTime.setText("Start Time:"+f.format(result.getStart()));
                     endtime.setText(" End Time:"+f.format(result.getEnd()));
                     notes.setText(result.getNotes());

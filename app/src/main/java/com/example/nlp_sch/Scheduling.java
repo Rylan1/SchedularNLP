@@ -26,7 +26,7 @@ import io.realm.RealmResults;
 
 public class Scheduling extends AppCompatActivity {
     private EditText topic,title,notes;
-    private TextView date,stime,etime,diaply;
+    private TextView date,stime,etime;
     Realm realm;
     private String startD,endD,startT,endT,fullSD,fullED;
     private DatePickerDialog.OnDateSetListener dateSetListener;
@@ -41,7 +41,7 @@ public class Scheduling extends AppCompatActivity {
         date=findViewById(R.id.datepick);
         stime=findViewById(R.id.StartTime);
         etime=findViewById(R.id.endTime);
-        diaply=findViewById(R.id.textView10);
+
         notes=findViewById(R.id.editText3);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +52,7 @@ public class Scheduling extends AppCompatActivity {
                 int day=cal.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog dialog=new DatePickerDialog(Scheduling.this,
                         R.style.Theme_AppCompat_Dialog_MinWidth,dateSetListener,year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(232,0,8)));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(2,63,59)));
                 dialog.show();
             }
         });
@@ -64,7 +64,7 @@ public class Scheduling extends AppCompatActivity {
                 int minute=cal.get(Calendar.MINUTE);
                 TimePickerDialog dialog=new TimePickerDialog(Scheduling.this,
                         R.style.Theme_AppCompat_DayNight_Dialog_MinWidth,timeSetListener,hours,minute,true);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(232,0,8)));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(2,63,59)));
                 dialog.show();
             }
         });
@@ -76,7 +76,7 @@ public class Scheduling extends AppCompatActivity {
                 int minute=cal.get(Calendar.MINUTE);
                 TimePickerDialog dialog=new TimePickerDialog(Scheduling.this,
                         R.style.Theme_AppCompat_DayNight_Dialog_MinWidth,timeSetListener2,hours,minute,true);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(232,0,8)));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(2,63,59)));
                 dialog.show();
             }
         });
@@ -153,19 +153,10 @@ public class Scheduling extends AppCompatActivity {
                                       }
 
         );
-        ShowData();
+
 
     }
 
-    private void ShowData() {
-        RealmResults<Sch_DB> sch_dbs=realm.where(Sch_DB.class).findAll();
-        diaply.setText("");
-        String stuff="";
-        for (Sch_DB data:sch_dbs){
-            stuff+=data.getTopic()+" "+data.getStart()+" "+data.getEnd()+"\n";
-        }
-        diaply.setText(stuff);
-    }
     protected void onDestroy() {
         super.onDestroy();
         realm.close();

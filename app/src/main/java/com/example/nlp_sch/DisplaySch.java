@@ -56,7 +56,7 @@ public class DisplaySch extends AppCompatActivity {
                 int day=cal.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog dialog=new DatePickerDialog(DisplaySch.this,
                         R.style.Theme_AppCompat_Dialog_MinWidth,dateSetListener,year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(33, 168, 13)));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(51, 32, 42)));
                 dialog.show();
             }
         });
