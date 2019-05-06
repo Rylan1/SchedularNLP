@@ -172,7 +172,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#C5D86D"
                         android:drawableTop="@android:drawable/ic_btn_speak_now"
-                        tools:text="Voice s" />
+                        tools:text="Voice " />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
