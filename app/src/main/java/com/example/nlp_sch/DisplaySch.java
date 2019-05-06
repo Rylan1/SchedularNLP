@@ -63,8 +63,12 @@ public class DisplaySch extends AppCompatActivity {
         dateSetListener=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String d1="/0"+dayOfMonth;
+                if(dayOfMonth>9){
+                    d1= "/"+dayOfMonth;
+                }
                 datepick.setText(year+"/"+(month+1)+"/"+dayOfMonth);
-                date2=year+"/0"+(month+1)+"/0"+dayOfMonth;
+                date2=year+"/0"+(month+1)+d1;
                 displaylist.clear();
                 getData();
             }
