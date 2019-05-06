@@ -44,10 +44,12 @@ public class arrayAdapter extends BaseAdapter {
         TextView topic=(TextView)convertView.findViewById(R.id.topicTxt);
         TextView sTime=(TextView)convertView.findViewById(R.id.satrtTxt);
         TextView eTime=(TextView)convertView.findViewById(R.id.endTxt);
+        TextView title=(TextView)convertView.findViewById(R.id.title2);
         topic.setText(tempData.getTopic());
         SimpleDateFormat f=new SimpleDateFormat("hh:mm aa");
         sTime.setText(f.format(tempData.getStart()));
         eTime.setText(f.format(tempData.getEnd()));
+        title.setText(tempData.getTitle());
         return convertView;
     }
 }

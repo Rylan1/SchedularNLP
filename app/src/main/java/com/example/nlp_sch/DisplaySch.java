@@ -70,23 +70,23 @@ public class DisplaySch extends AppCompatActivity {
             }
 
         };
-        t1=findViewById(R.id.textView9);
-        t2=findViewById(R.id.textView15);
+        //t1=findViewById(R.id.textView9);
+        //t2=findViewById(R.id.textView15);
     }
 
     private void getData() {
         RealmResults<Sch_DB> datas=realm.where(Sch_DB.class).findAll();
         SimpleDateFormat g=new SimpleDateFormat("yyyy/MM/dd");
-        t1.setText("");
-        t2.setText("");
-        String a="";
-        String b="";
+        //t1.setText("");
+        //t2.setText("");
+        //String a="";
+       // String b="";
 
         for(Sch_DB data:datas){
             try{
                 dat1=g.format(data.getStart());
-                a=dat1;
-                b=date2;
+               // a=dat1;
+                //b=date2;
 
                 if(date2.equals(dat1)){
                     displaylist.add(data);
@@ -97,8 +97,8 @@ public class DisplaySch extends AppCompatActivity {
             }
         }
         showStuff();
-        t1.setText(a);
-        t2.setText(b);
+        //t1.setText(a);
+        //t2.setText(b);
     }
     private void showStuff() {
         arrayAdapter myCustome=new arrayAdapter(DisplaySch.this,displaylist);
