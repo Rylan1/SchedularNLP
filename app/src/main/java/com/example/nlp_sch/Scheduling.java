@@ -84,7 +84,7 @@ public class Scheduling extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 startD=""+day+"/"+(month+1)+"/"+year;
-                endD="0"+day+"/0"+(month+1)+"/"+year;
+                endD=""+day+"/"+(month+1)+"/"+year;
                 date.setText(startD);
             }
         };
@@ -134,7 +134,7 @@ public class Scheduling extends AppCompatActivity {
                                               sch_db.setStart(dateFormat.parse(fullSD,parsePosition));
                                               //catch (ParseException e){e.printStackTrace();}
 
-                                              ParsePosition parsePosition1=new ParsePosition(1);
+                                              ParsePosition parsePosition1=new ParsePosition(0);
                                               sch_db.setEnd(dateFormat.parse(fullED,parsePosition1));
                                               //catch (ParseException e){e.printStackTrace();}
 
