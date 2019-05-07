@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void openSch() {
+        Intent intent=new Intent(this,Scheduling.class);
+        startActivity(intent);
+    }
+
     private void getCurrentTopic() {
         Calendar cal = Calendar.getInstance();
         Date date=cal.getTime();
@@ -74,10 +79,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void openSch() {
-        Intent intent=new Intent(this,Scheduling.class);
-        startActivity(intent);
-    }
     @Override
     public void onRestart()
     {

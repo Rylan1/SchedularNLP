@@ -123,34 +123,34 @@ public class Scheduling extends AppCompatActivity {
         fullSD=startD+ " "+startT;
         fullED=endD+" "+endT;
         realm.executeTransactionAsync(new Realm.Transaction() {
-                                          @Override
-                                          public void execute(Realm realm) {
-                                              Sch_DB sch_db = realm.createObject(Sch_DB.class);
-                                              sch_db.setTopic(topic.getText().toString().trim());
-                                              sch_db.setTitle(title.getText().toString().trim());
-                                              sch_db.setNotes(notes.getText().toString().trim());
-                                              SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-                                              ParsePosition parsePosition = new ParsePosition(0);
-                                              sch_db.setStart(dateFormat.parse(fullSD,parsePosition));
+            @Override
+            public void execute(Realm realm) {
+                Sch_DB sch_db = realm.createObject(Sch_DB.class);
+                sch_db.setTopic(topic.getText().toString().trim());
+                sch_db.setTitle(title.getText().toString().trim());
+                sch_db.setNotes(notes.getText().toString().trim());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+                ParsePosition parsePosition = new ParsePosition(0);
+                sch_db.setStart(dateFormat.parse(fullSD,parsePosition));
                                               //catch (ParseException e){e.printStackTrace();}
 
-                                              ParsePosition parsePosition1=new ParsePosition(0);
-                                              sch_db.setEnd(dateFormat.parse(fullED,parsePosition1));
+                ParsePosition parsePosition1=new ParsePosition(0);
+                sch_db.setEnd(dateFormat.parse(fullED,parsePosition1));
                                               //catch (ParseException e){e.printStackTrace();}
 
-                                          }
-                                      }, new Realm.Transaction.OnSuccess() {
-                                          @Override
-                                          public void onSuccess() {
-                                              Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+            }
+            }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 
-                                          }
-                                      }, new Realm.Transaction.OnError() {
-                                          @Override
-                                          public void onError(Throwable error) {
-                                              Toast.makeText(getApplicationContext(),"Failed to save",Toast.LENGTH_SHORT).show();
-                                          }
-                                      }
+            }
+            }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                Toast.makeText(getApplicationContext(),"Failed to save",Toast.LENGTH_SHORT).show();
+            }
+        }
 
         );
 
