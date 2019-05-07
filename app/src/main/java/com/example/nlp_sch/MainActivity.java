@@ -39,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
                 openCal();
             }
         });
+        Button voice=findViewById(R.id.button6);
+        voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openVoice();
+            }
+        });
+    }
+
+    private void openVoice() {
+        Intent intent=new Intent(this,Voice_Input.class);
+        startActivity(intent);
     }
 
     private void openCal() {

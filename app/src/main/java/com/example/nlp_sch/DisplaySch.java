@@ -81,7 +81,6 @@ public class DisplaySch extends AppCompatActivity {
         RealmResults<Sch_DB> datas=realm.where(Sch_DB.class).findAll();
         SimpleDateFormat g=new SimpleDateFormat("yyyy/MM/dd");
 
-
         for(Sch_DB data:datas){
             try{
                 dat1=g.format(data.getStart());

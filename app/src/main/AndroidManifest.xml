@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DisplaySch"></activity>
+        <activity android:name=".Voice_Input"></activity>
+        <activity android:name=".DisplaySch" />
         <activity android:name=".Scheduling" />
         <activity android:name=".MainActivity">
             <intent-filter>
