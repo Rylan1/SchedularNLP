@@ -1,5 +1,6 @@
 package com.example.nlp_sch;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -64,7 +65,13 @@ public class Voice_Input extends AppCompatActivity {
         listenIntent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Enter Voice Command");
         listenIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         listenIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,10);
-        startActivityForResult(listenIntent,REQUEST);
+        try{
+            startActivityForResult(listenIntent,REQUEST);
+        }
+        catch (ActivityNotFoundException tim){
+            tim.printStackTrace();
+        }
+
     }
 
     @Override
@@ -89,7 +96,7 @@ public class Voice_Input extends AppCompatActivity {
     }
 
     private void processInformation(ArrayList<String> data1) {
-
+        displaylist.clear();
         String[] words=data1.get(0).split("\\s");
         int i=0;
         for(String h1:words){
@@ -104,28 +111,23 @@ public class Voice_Input extends AppCompatActivity {
             if(h1.equals("topic")){
                 rule3(words[(i+1)]);
             }
+            if(h1.equals("title")){
+                rule4(words[(i+1)]);
+            }
             i++;
         }
-        /*if(Arrays.asList(data1).contains(h)||Arrays.asList(data1).contains(h2)){
-            TextView t1=findViewById(R.id.textView10);
-            t1.setText("tomorrow12121");
-            rule1();}*/
-
-        /*if(){
-            TextView t1=findViewById(R.id.textView10);
-            t1.setText("tomorrow12121");
-        }*/
     }
 
-    private void rule3(String word) {
+    private void rule4(String word) {
         RealmResults<Sch_DB> datas=realm.where(Sch_DB.class).findAll();
+
         for(Sch_DB data:datas){
             try{
 
 
                 TextView t1=findViewById(R.id.textView10);
 
-                if(data.getTopic().equals(word)){
+                if(data.getTitle().toUpperCase().equals(word.toUpperCase())){
                     displaylist.add(data);
                     t1.setText(word+" "+data.getTopic());
 
@@ -138,6 +140,32 @@ public class Voice_Input extends AppCompatActivity {
         }
 
         showData();
+
+    }
+
+    private void rule3(String word) {
+        RealmResults<Sch_DB> datas=realm.where(Sch_DB.class).findAll();
+
+        for(Sch_DB data:datas){
+            try{
+
+
+                TextView t1=findViewById(R.id.textView10);
+
+                if(data.getTopic().toUpperCase().equals(word.toUpperCase())){
+                    displaylist.add(data);
+                    t1.setText(word+" "+data.getTopic());
+
+
+                }
+            }
+            catch(NullPointerException e){
+                e.printStackTrace();
+            }
+        }
+
+        showData();
+
     }
 
     private void rule2() {
@@ -170,6 +198,7 @@ public class Voice_Input extends AppCompatActivity {
         }
 
         showData();
+
     }
 
     private void rule1() {
@@ -178,8 +207,6 @@ public class Voice_Input extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         Date date=cal.getTime();
         String date2=g.format(date);
-
-
         for(Sch_DB data:datas){
             try{
                 String date3=g.format(data.getStart());
@@ -202,7 +229,7 @@ public class Voice_Input extends AppCompatActivity {
     }
 
     private void showData() {
-        arrayAdapter myCustome=new arrayAdapter(Voice_Input.this,displaylist);
+        arrayAdapter1 myCustome=new arrayAdapter1(Voice_Input.this,displaylist);
         listView.setAdapter(myCustome);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

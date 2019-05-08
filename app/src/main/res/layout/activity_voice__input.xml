@@ -22,8 +22,8 @@
                 android:id="@+id/good"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#515052"
-                tools:listitem="@layout/rowdata">
+                android:background="#E5823B"
+                tools:listitem="@layout/rownlp">
 
             </ListView>
 
