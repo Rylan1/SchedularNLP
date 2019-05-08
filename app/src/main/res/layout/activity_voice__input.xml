@@ -41,12 +41,6 @@
                 android:layout_height="112dp"
                 app:srcCompat="@android:drawable/ic_btn_speak_now" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

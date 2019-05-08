@@ -64,7 +64,7 @@ public class Voice_Input extends AppCompatActivity {
         Intent listenIntent= new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         listenIntent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Enter Voice Command");
         listenIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        listenIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,10);
+        listenIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
         try{
             startActivityForResult(listenIntent,REQUEST);
         }
@@ -79,11 +79,6 @@ public class Voice_Input extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==REQUEST && resultCode==RESULT_OK){
             ArrayList<String>data1=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            TextView t1=findViewById(R.id.textView10);
-            t1.setText("");
-            for(String l:data1){
-                t1.setText(t1.getText()+l+" ");
-            }
             processInformation(data1);
             int i=0;
             for(String a:data1){
@@ -98,23 +93,24 @@ public class Voice_Input extends AppCompatActivity {
     private void processInformation(ArrayList<String> data1) {
         displaylist.clear();
         String[] words=data1.get(0).split("\\s");
-        int i=0;
         for(String h1:words){
             if(h1.equals("today")){
-                TextView t1=findViewById(R.id.textView10);
-                t1.setText("tomorrow12121");
                 rule1();
             }
             if(h1.equals("tomorrow")){
                 rule2();
             }
             if(h1.equals("topic")){
-                rule3(words[(i+1)]);
+                for(String temp:words){
+                    rule3(temp);
+                }
+
             }
             if(h1.equals("title")){
-                rule4(words[(i+1)]);
+                for(String temp:words){
+                    rule3(temp);
+                }
             }
-            i++;
         }
     }
 
@@ -123,15 +119,8 @@ public class Voice_Input extends AppCompatActivity {
 
         for(Sch_DB data:datas){
             try{
-
-
-                TextView t1=findViewById(R.id.textView10);
-
                 if(data.getTitle().toUpperCase().equals(word.toUpperCase())){
                     displaylist.add(data);
-                    t1.setText(word+" "+data.getTopic());
-
-
                 }
             }
             catch(NullPointerException e){
@@ -148,15 +137,8 @@ public class Voice_Input extends AppCompatActivity {
 
         for(Sch_DB data:datas){
             try{
-
-
-                TextView t1=findViewById(R.id.textView10);
-
                 if(data.getTopic().toUpperCase().equals(word.toUpperCase())){
                     displaylist.add(data);
-                    t1.setText(word+" "+data.getTopic());
-
-
                 }
             }
             catch(NullPointerException e){
@@ -181,15 +163,8 @@ public class Voice_Input extends AppCompatActivity {
         for(Sch_DB data:datas){
             try{
                 String date3=g.format(data.getStart());
-                // a=dat1;
-                //b=date2;
-                TextView t1=findViewById(R.id.textView10);
-
                 if(date2.equals(date3)){
                     displaylist.add(data);
-                    t1.setText(date2+" "+date3);
-
-
                 }
             }
             catch(NullPointerException e){
@@ -210,14 +185,8 @@ public class Voice_Input extends AppCompatActivity {
         for(Sch_DB data:datas){
             try{
                 String date3=g.format(data.getStart());
-                // a=dat1;
-                //b=date2;
-                TextView t1=findViewById(R.id.textView10);
-                t1.setText(date2+" "+date3);
-
                 if(date2.equals(date3)){
                     displaylist.add(data);
-
                 }
             }
             catch(NullPointerException e){
@@ -245,10 +214,7 @@ public class Voice_Input extends AppCompatActivity {
                         displaylist.get(position).deleteFromRealm();
                         displaylist.remove(position);
                         realm.commitTransaction();
-
                         myCustome.notifyDataSetChanged();
-
-
                     }});
                 adb.show();
             }
