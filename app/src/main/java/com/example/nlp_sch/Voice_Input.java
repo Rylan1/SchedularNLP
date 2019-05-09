@@ -89,9 +89,10 @@ public class Voice_Input extends AppCompatActivity {
         }
 
     }
-
     private void processInformation(ArrayList<String> data1) {
         displaylist.clear();
+        TextView t=findViewById(R.id.textView9);
+        t.setText(data1.get(0));
         String[] words=data1.get(0).split("\\s");
         for(String h1:words){
             if(h1.equals("today")){
@@ -108,7 +109,7 @@ public class Voice_Input extends AppCompatActivity {
             }
             if(h1.equals("title")){
                 for(String temp:words){
-                    rule3(temp);
+                    rule4(temp);
                 }
             }
         }
