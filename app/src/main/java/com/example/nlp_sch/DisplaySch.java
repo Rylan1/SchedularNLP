@@ -123,4 +123,9 @@ public class DisplaySch extends AppCompatActivity {
             }
         });
     }
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+
+    }
 }

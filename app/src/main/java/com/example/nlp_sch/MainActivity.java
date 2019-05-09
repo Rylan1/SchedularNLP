@@ -98,4 +98,9 @@ public class MainActivity extends AppCompatActivity {
         finish();
         startActivity(getIntent());
     }
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+
+    }
 }
